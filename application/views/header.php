@@ -53,6 +53,9 @@
               <li class="nav-header">Languages</li>
               <li><a href="<?php echo base_url('languages/add_edit');?>">New</a></li>
               <li><a href="<?php echo base_url('languages/view');?>">View</a></li>
+              <li class="nav-header">Countries</li>
+              <li><a href="<?php echo base_url('countries/add_edit');?>">New</a></li>
+              <li><a href="<?php echo base_url('countries/view');?>">View</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

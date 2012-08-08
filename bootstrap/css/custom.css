@@ -4,3 +4,8 @@ body {
 }
 
 textarea {min-width:650px;}
+
+.langs_list {list-style-type:none;margin:0px;padding:0px}
+.langs_list li {border-bottom:1px solid #eee;padding:3px}
+.langs_list strong {display:inline-block;padding-left:5px;font-weight:normal;color:#000}
+.langs_list li input[type=radio]  {display:inline-block;vertical-align:middle;padding:5px;margin-top:-1px}
