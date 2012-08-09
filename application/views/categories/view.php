@@ -8,16 +8,18 @@
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
+			<th>Detail</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach($countries as $country):?>
+	<?php foreach($categories as $category):?>
 	<tr>
-		<td><?php echo $country->id?></td>
-		<td><?php echo $country->english_iso_name?></td>
+		<td><?php echo $category->id?></td>
+		<td><?php echo $category->name?></td>
+		<td><?php echo character_limiter($category->detail,30);?></td>
 		<td>
-			<a href="<?php echo base_url('countries/add_edit/'.$country->id)?>"><i class="icon-pencil"></i>Edit</a>
+			<a href="<?php echo base_url('categories/add_edit/'.$category->id)?>"><i class="icon-pencil"></i>Edit</a>
 		</td>
 	</tr>
 	<?php endforeach;?>

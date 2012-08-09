@@ -47,15 +47,21 @@
         <div class="span2">
           <div class=" sidebar-nav">
             <ul class="nav nav-list">
+              <li class="nav-header">Programs</li>
+              <li><a href="<?php echo base_url('programs/add_edit');?>"><i class="icon-plus"></i>New</a></li>
+              <li><a href="<?php echo base_url('programs/view');?>"><i class="icon-th-list"></i>View</a></li>
+              <li class="nav-header">Categories</li>
+              <li><a href="<?php echo base_url('categories/add_edit');?>"><i class="icon-plus"></i>New</a></li>
+              <li><a href="<?php echo base_url('categories/view');?>"><i class="icon-th-list"></i>View</a></li>
               <li class="nav-header">Licenses</li>
-              <li><a href="<?php echo base_url('licenses/add_edit');?>">New</a></li>
-              <li><a href="<?php echo base_url('licenses/view');?>">View</a></li>
+              <li><a href="<?php echo base_url('licenses/add_edit');?>"><i class="icon-plus"></i>New</a></li>
+              <li><a href="<?php echo base_url('licenses/view');?>"><i class="icon-th-list"></i>View</a></li>
               <li class="nav-header">Languages</li>
-              <li><a href="<?php echo base_url('languages/add_edit');?>">New</a></li>
-              <li><a href="<?php echo base_url('languages/view');?>">View</a></li>
+              <li><a href="<?php echo base_url('languages/add_edit');?>"><i class="icon-plus"></i>New</a></li>
+              <li><a href="<?php echo base_url('languages/view');?>"><i class="icon-th-list"></i>View</a></li>
               <li class="nav-header">Countries</li>
-              <li><a href="<?php echo base_url('countries/add_edit');?>">New</a></li>
-              <li><a href="<?php echo base_url('countries/view');?>">View</a></li>
+              <li><a href="<?php echo base_url('countries/add_edit');?>"><i class="icon-plus"></i>New</a></li>
+              <li><a href="<?php echo base_url('countries/view');?>"><i class="icon-th-list"></i>View</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

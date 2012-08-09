@@ -22,6 +22,19 @@ class Licenses_model extends CI_Model {
 		}
 	}
 	
+	public function get_for_select()
+	{
+		$licenses = array('-1' => 'Select one ...');
+		
+		$items = $this->db->select('id,name')->from('licenses')->get()->result();
+		
+		foreach($items as $item) {
+			$licenses[$item->id] = $item->name;
+		}
+		
+		return $licenses;
+	}
+	
 	public function get_id()
 	{
 		$item = $this->db->where('id',$this->id)->get('licenses')->result();
