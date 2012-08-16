@@ -36,6 +36,25 @@ class Programs_model extends CI_Model {
 		}
 	}
 	
+	public function check_name($program_name)
+	{
+		$item = $this->db->where('name',$program_name)->get('programs')->result();
+		return (count($item) > 0) ? True : False;
+	}
+	
+	public function get_names_for_typehead()
+	{
+		$program_names = array();
+		
+		$items = $this->db->select('name')->get('programs')->result();
+		
+		foreach($items as $item):
+			$program_names[] = $item->name;
+		endforeach;
+		
+		return $program_names;
+	}
+	
 	public function get_id()
 	{
 		$item = $this->db->where('id',$this->id)->get('programs')->result();

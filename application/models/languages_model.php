@@ -17,6 +17,19 @@ class Languages_model extends CI_Model {
 		$licenses = $this->db->get('languages')->result();
 		return $licenses;
 	}
+	
+	public function get_for_select()
+	{
+		$categories = array('-1' => 'Select one ...');
+	
+		$items = $this->db->select('id,english_iso_name')->from('languages')->get()->result();
+	
+		foreach($items as $item) {
+			$categories[$item->id] = $item->english_iso_name;
+		}
+	
+		return $categories;
+	}
 
 	public function save()
 	{

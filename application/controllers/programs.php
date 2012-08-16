@@ -178,6 +178,13 @@ class Programs extends CI_Controller {
 	{
 		$this->load->model('icons_model','Icons');
 		
+		$id_program = $this->input->post('id');
+		
+		if(False !== $id_program)
+			$this->Programs->id = $id_program;
+		
+		$program = (False !== $id_program) ? $this->Programs->get_id() : $this->Programs;
+		
 		$config['upload_path'] 		= './uploads/';
 		$config['allowed_types'] 	= 'gif|jpg|png';
 		$config['max_size']			= '2000';
@@ -185,21 +192,27 @@ class Programs extends CI_Controller {
 		$config['max_height']  		= '256';
 		
 		$this->load->library('upload', $config);
+		$this->load->library('form_validation');
 		
 		$data = array();
 		
-		if (!$this->upload->do_upload())
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('slug', 'Slug name', 'required');
+		
+		if (!$this->upload->do_upload() || $this->form_validation->run() == FALSE)
 		{
 			$data['status'] = 'fail';
 			$data['errors'] = $this->upload->display_errors();
+			$data['verrors'] = validation_errors();
 		}
 		else
 		{
 			$file_data = $this->upload->data();
+			$this->load->library('image_lib');
 			
 			$this->Icons->name 			= $this->input->post('name');
 			$this->Icons->slug 			= $this->input->post('slug');
-			$this->Icons->id_program 	= $this->input->post('id_program');
+			$this->Icons->id_program 	= $id_program;
 			$this->Icons->is_main		= $this->input->post('is_main');
 			$this->Icons->ext 			= $file_data['file_ext'];
 			$this->Icons->width 		= $file_data['image_width'];
@@ -209,8 +222,18 @@ class Programs extends CI_Controller {
 			
 			$new_name = $file_data['file_path'] . $this->input->post('slug') . $file_data['file_ext'];
 			rename($file_data['full_path'], $new_name);
-						
+			chmod ($new_name, 0777);
+			
+			$data['status'] = 'win';
+			$data['icon'] = $this->Icons;
+			$data['icon_data'] = $file_data;
 		}
+		
+		$data['program'] = $program;
+		
+		$this->load->view('header');
+		$this->load->view('programs/do_icon_upload',$data);
+		$this->load->view('footer');
 	}
 	
 	public function upload_icon($id_program)
@@ -221,8 +244,8 @@ class Programs extends CI_Controller {
 		$program = (False !== $id_program) ? $this->Programs->get_id() : $this->Programs;
 		
 		$data = array(
-				'form' => $this->_render_upload_icon_form($id_program),
-				'program' => $program,
+			'form' => $this->_render_upload_icon_form($id_program),
+			'program' => $program,
 		);
 		
 		$this->load->view('header');
