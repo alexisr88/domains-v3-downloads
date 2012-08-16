@@ -21,7 +21,7 @@ class Splash_content extends CI_Controller {
 		$this->load->helper('text');
 		
 		$data = array(
-			'programs' => $this->Programs->get_list(),
+			'splashs' => $this->Splash->get_list(),
 		);
 		
 		$this->load->view('header');
@@ -53,6 +53,8 @@ class Splash_content extends CI_Controller {
 				'status' => 'win',
 				'message' => $this->lang->line('form_results_license_win'),
 			);
+			
+			$program = $this->Programs->get_by_name($this->input->post('program_name'));
 				
 			if(False !== $this->input->post('id'))
 				$this->Splash->id = $this->input->post('id');
@@ -60,6 +62,7 @@ class Splash_content extends CI_Controller {
 			$this->Splash->title 		= $this->input->post('title');
 			$this->Splash->text 		= $this->input->post('text');
 			$this->Splash->id_language 	= $this->input->post('id_language');
+			$this->Splash->id_program	= $program->id;
 			
 			$this->Splash->save();
 		}
@@ -95,6 +98,9 @@ class Splash_content extends CI_Controller {
 		{
 			$form .= form_hidden('id',$id_splash_content);
 			$form .= form_hidden('action_type','update');
+	
+			$this->Programs->id = $splash->id_program;
+			$program = $this->Programs->get_id();
 		}
 		
 		$p_name_input = array(
@@ -102,6 +108,7 @@ class Splash_content extends CI_Controller {
 			'data-items'	=> '5',
 			'data-source'	=> htmlentities('["'.implode('","',$this->Programs->get_names_for_typehead()).'"]'),
 			'name'			=> 'program_name',
+			'value'			=> @$program->name,
 		);
 				
 		$form .= open_control();

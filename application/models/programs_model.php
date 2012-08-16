@@ -42,6 +42,12 @@ class Programs_model extends CI_Model {
 		return (count($item) > 0) ? True : False;
 	}
 	
+	public function get_by_name($name)
+	{
+		$item = $this->db->where('name',$name)->get('programs')->result();
+		return (count($item) > 0) ? $item[0] : False;		
+	}
+	
 	public function get_names_for_typehead()
 	{
 		$program_names = array();

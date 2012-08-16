@@ -7,19 +7,26 @@
 	<thead>
 		<tr>
 			<th>Id</th>
-			<th>Name</th>
-			<th>Detail</th>
+			<th>Program</th>
+			<th>Lang</th>
+			<th>Title</th>
+			<th>Text</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach($categories as $category):?>
+	<?php foreach($splashs as $splash):?>
 	<tr>
-		<td><?php echo $category->id?></td>
-		<td><?php echo $category->name?></td>
-		<td><?php echo character_limiter($category->detail,30);?></td>
+		<td><?php echo $splash->id?></td>
+		<td><?php echo $splash->program_name;?></td>
 		<td>
-			<a href="<?php echo base_url('categories/add_edit/'.$category->id)?>"><i class="icon-pencil"></i>Edit</a>
+			<img class="flag" src="<?php echo base_url('bootstrap/img/flags/png/'.$splash->iso_code.'.png')?>" />
+			<?php echo $splash->english_iso_name; ?>
+		</td>
+		<td><?php echo $splash->title?></td>
+		<td><?php echo character_limiter($splash->text,30);?></td>
+		<td>
+			<a href="<?php echo base_url('splash_content/add_edit/'.$splash->id)?>"><i class="icon-pencil"></i>Edit</a>
 		</td>
 	</tr>
 	<?php endforeach;?>
