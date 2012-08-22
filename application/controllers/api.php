@@ -46,9 +46,8 @@ class Api extends CI_Controller
 	
 	public function get_tops($lang_code, $limit)
 	{		
-		$this->Langs->iso_code = $lang_code;
-		$language = $this->Langs->get_by_code();
-		
+		$language = $this->get_language_info($lang_code);
+				
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.our_valuation, p.color, p.url_background')
 						  ->select('c.name AS category_name, c.slug AS category_slug')
 						  ->select('l.name AS license_name')
