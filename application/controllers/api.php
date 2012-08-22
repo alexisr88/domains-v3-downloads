@@ -61,7 +61,7 @@ class Api extends CI_Controller
 						  ->limit($limit)
 						  ->get()->result();
 		
-		return $items;
+		print json_encode($items);
 	}
 	
 	public function get_latest($lang_code, $limit)
