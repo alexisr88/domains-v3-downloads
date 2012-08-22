@@ -54,6 +54,11 @@ class Programs extends CI_Controller {
 		$form .= close_control();
 		
 		$form .= open_control();
+		$form .= form_label('Slug','slug');
+		$form .= form_input('slug',$program->slug);
+		$form .= close_control();
+		
+		$form .= open_control();
 		$form .= form_label('Oficial Site Url','official_site_url');
 		$form .= form_input('official_site_url',$program->official_site_url);
 		$form .= close_control();
@@ -88,6 +93,16 @@ class Programs extends CI_Controller {
 		$form .= form_label('Category','id_category');
 		$form .= form_dropdown('id_category',$categories_list,$program->id_category);
 		$form .= close_control();
+		
+		$form .= open_control();
+		$form .= form_label('Color','color');
+		$form .= form_input('color',$program->color);
+		$form .= close_control();
+		
+		$form .= open_control();
+		$form .= form_label('Url Background','url_background');
+		$form .= form_input('url_background',$program->url_background);
+		$form .= close_control();
 
 		$form .= form_submit(array('class' => 'btn btn-primary btn-medium','value' => 'Save','id' => 'save-licenses'));
 		$form .= form_close();
@@ -101,6 +116,7 @@ class Programs extends CI_Controller {
 		
 		$this->form_validation->set_error_delimiters('', '|');
 		$this->form_validation->set_rules('name', 'Name{name}', 'required');
+		$this->form_validation->set_rules('slug', 'Slug{slug}', 'required');
 		$this->form_validation->set_rules('official_site_url', 'Official site url{official_site_url}', 'required');
 		$this->form_validation->set_rules('size', 'Download Size{size}', 'required');
 		$this->form_validation->set_rules('our_valuation', 'Our Valuation{our_valuation}', 'required');
@@ -126,12 +142,15 @@ class Programs extends CI_Controller {
 				$this->Programs->id = $this->input->post('id');
 				
 			$this->Programs->name 				= $this->input->post('name');
+			$this->Programs->slug 				= $this->input->post('slug');
 			$this->Programs->official_site_url 	= $this->input->post('official_site_url');
 			$this->Programs->official_contact 	= $this->input->post('official_contact');
 			$this->Programs->size 				= $this->input->post('size');
 			$this->Programs->our_valuation 		= $this->input->post('our_valuation');
 			$this->Programs->id_license 		= $this->input->post('id_license');
 			$this->Programs->id_category 		= $this->input->post('id_category');
+			$this->Programs->color 				= $this->input->post('color');
+			$this->Programs->url_background 	= $this->input->post('url_background');
 			
 			$this->Programs->save();
 		}

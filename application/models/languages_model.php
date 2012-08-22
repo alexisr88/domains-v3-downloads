@@ -11,6 +11,12 @@ class Languages_model extends CI_Model {
 		return (count($item) > 0) ? $item[0] : False;
 	}
 	
+	public function get_by_code()
+	{
+		$item = $this->db->where('iso_code',$this->iso_code)->get('languages')->result();
+		return (count($item) > 0) ? $item[0] : False;		
+	}
+	
 	public function get_list($limit = Null,$offset = Null)
 	{
 		//$this->db->limit($limit,$offset);

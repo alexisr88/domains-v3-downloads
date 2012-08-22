@@ -16,3 +16,22 @@ i {padding-right:5px}
 .ratings-form-program i {cursor:pointer}
 
 .flag {padding-right:5px;vertical-align:baseline}
+
+
+.nav-list li a span.tiny-help {font-size:11px;color:#444}
+#chose_translation_type li {cursor:pointer}
+#chose_translation_type i {visibility:hidden}
+#chose_translation_type .selected i {visibility:visible;}
+
+h3 .label {font-size:14px;width:100%;display:block;padding:5px;}
+
+.chose_lang {border-bottom:1px dashed #eee;padding:10px;}
+.chose_lang .label:hover {background:#444;cursor:pointer}
+.chose_lang strong {width:40px;display:inline-block}
+.chose_lang .label {padding:5px;font-size:80%;min-width:50px;display:inline-block;text-align:center}
+
+.t_loader {display:none}
+
+#save-translations textarea {height:80px;}
+#translationModal {display:none;}
+#translationModal textarea {min-width:98%;}

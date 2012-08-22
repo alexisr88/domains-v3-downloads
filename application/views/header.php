@@ -47,6 +47,9 @@
         <div class="span2">
           <div class=" sidebar-nav">
             <ul class="nav nav-list">
+              <li class="nav-header">Translations</li>
+              <li><a href="<?php echo base_url('translations/create_edit');?>"><i class="icon-plus"></i>New Key</a></li>
+              <li><a href="<?php echo base_url('translations/step_one');?>"><i class="icon-th-list"></i>Translate Content</a></li>
               <li class="nav-header">Splash Content</li>
               <li><a href="<?php echo base_url('splash_content/add_edit');?>"><i class="icon-plus"></i>New</a></li>
               <li><a href="<?php echo base_url('splash_content/view');?>"><i class="icon-th-list"></i>View</a></li>

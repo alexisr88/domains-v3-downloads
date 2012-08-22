@@ -3,6 +3,7 @@ class Programs_model extends CI_Model {
 
 	public $id;
 	public $name;
+	public $slug;
 	public $official_site_url;
 	public $official_contact;
 	public $size;
@@ -13,6 +14,8 @@ class Programs_model extends CI_Model {
 	public $id_updater;
 	public $date_added;
 	public $date_updated;
+	public $color;
+	public $url_background;
 
 	function __construct()
 	{
