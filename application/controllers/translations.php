@@ -31,7 +31,7 @@ class Translations extends CI_Controller {
 		
 	public function _generate_new_key_form()
 	{
-		$form  = form_open('translations/save/',array('class' => 'well ajax_form', 'id' => 'save-translation-key'));
+		$form  = form_open(base_url('translations/save/'),array('class' => 'well ajax_form', 'id' => 'save-translation-key'));
 		
 		$form .= open_control();
 		$form .= form_label('Idioma Base','id_lang');
@@ -196,7 +196,7 @@ class Translations extends CI_Controller {
 	
 	public function render_translation_form($lang_source,$lang_dest,$id_source,$id_dest,$keyword)
 	{
-		$form  = form_open('translations/save_translation/',array('class' => 'ajax_form', 'id' => 'save-translations'));
+		$form  = form_open(base_url('translations/save_translation/'),array('class' => 'ajax_form', 'id' => 'save-translations'));
 		
 		$form .= form_hidden('id_source',$id_source);
 		$form .= form_hidden('id_dest',$id_dest);

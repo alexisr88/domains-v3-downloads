@@ -79,7 +79,7 @@ $(document).ready(function(){
 			if(action == 'get_general')
 			{
 				$(this).children('img').css('display','inline-block');
-				$('#general').load('/translations/render_general_by_source_dest/'+id_source+'/'+id_dest+'',function(){
+				$('#general').load('<?php echo base_url()?>/translations/render_general_by_source_dest/'+id_source+'/'+id_dest+'',function(){
 					$('#loader-general').hide();
 				});			
 			}
