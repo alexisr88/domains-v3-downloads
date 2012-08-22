@@ -49,19 +49,20 @@ class Api extends CI_Controller
 		$language = $this->get_language_info($lang_code);
 				
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.our_valuation, p.color, p.url_background')
-						  ->select('c.name AS category_name, c.slug AS category_slug')
+						  ->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 						  ->select('l.name AS license_name')
 						  ->select('sc.title AS splash_title, sc.text AS splash_text')
 						  ->select('i.slug AS icon_slug, i.ext as icon_extension')
 						  ->from('programs p')
 						  ->join('categories c','c.id = p.id_category')
-						  ->join('icons i','i.id_program = p.id')
+						  ->join('icons i','i.id_program = p.id', 'left outer')
 						  ->join('licenses l','l.id = p.id_license')
 						  ->join('splash_content sc','sc.id_program = p.id')
 						  ->join('languages la','la.id = sc.id_language')
 						  ->where('sc.id_language',$language->id)
 						  ->limit($limit)
 						  ->get()->result();
+		
 		
 		print json_encode($items);
 	}
@@ -71,13 +72,13 @@ class Api extends CI_Controller
 		$language = $this->get_language_info($lang_code);
 	
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.our_valuation, p.color, p.url_background')
-							->select('c.name AS category_name, c.slug AS category_slug')
+							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text')
 							->select('i.slug AS icon_slug, i.ext as icon_extension')
 							->from('programs p')
 							->join('categories c','c.id = p.id_category')
-							->join('icons i','i.id_program = p.id')
+							->join('icons i','i.id_program = p.id', 'left outer')
 							->join('licenses l','l.id = p.id_license')
 							->join('splash_content sc','sc.id_program = p.id')
 							->join('languages la','la.id = sc.id_language')
@@ -93,13 +94,13 @@ class Api extends CI_Controller
 		$language = $this->get_language_info($lang_code);
 	
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.our_valuation, p.color, p.url_background')
-							->select('c.name AS category_name, c.slug AS category_slug')
+							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text')
 							->select('i.slug AS icon_slug, i.ext as icon_extension')
 							->from('programs p')
 							->join('categories c','c.id = p.id_category')
-							->join('icons i','i.id_program = p.id')
+							->join('icons i','i.id_program = p.id', 'left outer')
 							->join('licenses l','l.id = p.id_license')
 							->join('splash_content sc','sc.id_program = p.id')
 							->join('languages la','la.id = sc.id_language')
@@ -130,13 +131,13 @@ class Api extends CI_Controller
 		$language = $this->get_language_info($lang_code);
 		
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.our_valuation, p.color, p.url_background')
-							->select('c.name AS category_name, c.slug AS category_slug')
+							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text')
 							->select('i.slug AS icon_slug, i.ext as icon_extension')
 							->from('programs p')
 							->join('categories c','c.id = p.id_category')
-							->join('icons i','i.id_program = p.id')
+							->join('icons i','i.id_program = p.id', 'left outer')
 							->join('licenses l','l.id = p.id_license')
 							->join('splash_content sc','sc.id_program = p.id')
 							->join('languages la','la.id = sc.id_language')
@@ -152,13 +153,13 @@ class Api extends CI_Controller
 		$language = $this->get_language_info($lang_code);
 	
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.our_valuation, p.color, p.url_background')
-							->select('c.name AS category_name, c.slug AS category_slug')
+							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text')
 							->select('i.slug AS icon_slug, i.ext as icon_extension')
 							->from('programs p')
 							->join('categories c','c.id = p.id_category')
-							->join('icons i','i.id_program = p.id')
+							->join('icons i','i.id_program = p.id', 'left outer')
 							->join('licenses l','l.id = p.id_license')
 							->join('splash_content sc','sc.id_program = p.id')
 							->join('languages la','la.id = sc.id_language')
