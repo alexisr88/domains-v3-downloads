@@ -5,6 +5,7 @@ class Programs_model extends CI_Model {
 	public $name;
 	public $slug;
 	public $official_site_url;
+	public $official_download;
 	public $official_contact;
 	public $size;
 	public $our_valuation;

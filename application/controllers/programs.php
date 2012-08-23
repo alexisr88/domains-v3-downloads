@@ -64,6 +64,11 @@ class Programs extends CI_Controller {
 		$form .= close_control();
 		
 		$form .= open_control();
+		$form .= form_label('Official Download','official_download');
+		$form .= form_input('official_download',$program->official_download);
+		$form .= close_control();
+		
+		$form .= open_control();
 		$form .= form_label('Oficial Contact','official_contact');
 		$form .= form_input('official_contact',$program->official_contact);
 		$form .= close_control();
@@ -118,6 +123,7 @@ class Programs extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Name{name}', 'required');
 		$this->form_validation->set_rules('slug', 'Slug{slug}', 'required');
 		$this->form_validation->set_rules('official_site_url', 'Official site url{official_site_url}', 'required');
+		$this->form_validation->set_rules('official_download', 'Official Download{official_download}', 'required');
 		$this->form_validation->set_rules('size', 'Download Size{size}', 'required');
 		$this->form_validation->set_rules('our_valuation', 'Our Valuation{our_valuation}', 'required');
 		$this->form_validation->set_rules('id_license', 'License{id_license}', 'required|is_natural_no_zero');
@@ -144,6 +150,7 @@ class Programs extends CI_Controller {
 			$this->Programs->name 				= $this->input->post('name');
 			$this->Programs->slug 				= $this->input->post('slug');
 			$this->Programs->official_site_url 	= $this->input->post('official_site_url');
+			$this->Programs->official_download 	= $this->input->post('official_download');
 			$this->Programs->official_contact 	= $this->input->post('official_contact');
 			$this->Programs->size 				= $this->input->post('size');
 			$this->Programs->our_valuation 		= $this->input->post('our_valuation');
