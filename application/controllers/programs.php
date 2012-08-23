@@ -59,6 +59,11 @@ class Programs extends CI_Controller {
 		$form .= close_control();
 		
 		$form .= open_control();
+		$form .= form_label('Traker','tracker');
+		$form .= form_input('tracker',$program->tracker);
+		$form .= close_control();
+		
+		$form .= open_control();
 		$form .= form_label('Oficial Site Url','official_site_url');
 		$form .= form_input('official_site_url',$program->official_site_url);
 		$form .= close_control();
@@ -158,6 +163,7 @@ class Programs extends CI_Controller {
 			$this->Programs->id_category 		= $this->input->post('id_category');
 			$this->Programs->color 				= $this->input->post('color');
 			$this->Programs->url_background 	= $this->input->post('url_background');
+			$this->Programs->tracker 			= $this->input->post('tracker');
 			
 			$this->Programs->save();
 		}

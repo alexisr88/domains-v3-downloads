@@ -17,6 +17,7 @@ class Programs_model extends CI_Model {
 	public $date_updated;
 	public $color;
 	public $url_background;
+	public $tracker;
 
 	function __construct()
 	{
