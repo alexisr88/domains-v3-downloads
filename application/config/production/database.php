@@ -49,13 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-/*
 $db['default']['username'] = 'sms_contenidos';
 $db['default']['password'] = '76f3p0kweN1vH81F';
-*/
 $db['default']['database'] = 'domainsv3';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
