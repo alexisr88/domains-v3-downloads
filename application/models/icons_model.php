@@ -37,10 +37,12 @@ class Icons_model extends CI_Model {
 	
 	public function get_screenshots()
 	{
+		$this->db->cache_off();
 		$this->db->where('id_program',$this->id)
 				 ->where('type','ss');
 		
 		$icons = $this->db->get('icons')->result();
+		$this->db->cache_on();
 		return $icons;		
 	}
 	
