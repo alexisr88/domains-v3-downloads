@@ -176,4 +176,20 @@ class Api extends CI_Controller
 		print json_encode($items);
 	}
 	
+	public function get_screenshots($id_program)
+	{
+		$screenshots = $this->db->where('type','ss')
+								->where('id_program',$id_program)
+								->get('icons')
+								->result();
+		
+		foreach($screenshots as $ss) 
+		{
+			$ss->ss_url = base_url('uploads') . '/' . $id_program . '/' . $ss->slug.$ss->ext;
+			$ss->ss_thumb = base_url('uploads') . '/' . $id_program . '/' . $ss->thumb;
+		}
+		
+		print json_encode($screenshots);
+	}
+	
 }
