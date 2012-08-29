@@ -35,3 +35,9 @@ h3 .label {font-size:14px;width:100%;display:block;padding:5px;}
 #save-translations textarea {height:80px;}
 #translationModal {display:none;}
 #translationModal textarea {min-width:98%;}
+
+.screenshots img {margin-right:10px;}
+.screenshots .inline-options {display:inline-block;background:#eee;position:absolute;width:auto;margin-left:-130px;border-radius:5px;margin-top:10px;padding:4px;border:1px solid #444;cursor:pointer}
+.screenshots i {padding:0px;margin:0px}
+.screenshots .img-box {dispaly:inline}
+.img-rounded {box-shadow: 1px 1px 1px #444}

@@ -60,6 +60,7 @@ class Api extends CI_Controller
 						  ->join('splash_content sc','sc.id_program = p.id')
 						  ->join('languages la','la.id = sc.id_language')
 						  ->where('sc.id_language',$language->id)
+						  ->where('i.type','icon')
 						  ->limit($limit)
 						  ->get()->result();
 		
@@ -83,6 +84,7 @@ class Api extends CI_Controller
 							->join('splash_content sc','sc.id_program = p.id')
 							->join('languages la','la.id = sc.id_language')
 							->where('sc.id_language',$language->id)
+							->where('i.type','icon')
 							->limit($limit)
 							->get()->result();
 	
@@ -106,6 +108,7 @@ class Api extends CI_Controller
 							->join('languages la','la.id = sc.id_language')
 							->where('sc.id_language',$language->id)
 							->where('p.id_category',$id_category)
+							->where('i.type','icon')
 							->limit($limit)
 							->get()->result();
 	
@@ -143,6 +146,7 @@ class Api extends CI_Controller
 							->join('languages la','la.id = sc.id_language')
 							->where('sc.id_language',$language->id)
 							->where('p.slug',$slug)
+							->where('i.type','icon')
 							->get()->result();
 		
 		print json_encode($items);		
@@ -165,6 +169,7 @@ class Api extends CI_Controller
 							->join('languages la','la.id = sc.id_language')
 							->where('sc.id_language',$language->id)
 							->where('MATCH (p.name) AGAINST ("'.$query.'")', Null, False)
+							->where('i.type','icon')
 							->limit($limit)
 							->get()->result();
 	

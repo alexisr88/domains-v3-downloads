@@ -9,6 +9,8 @@ class Icons_model extends CI_Model {
 	public $width;
 	public $height;
 	public $size;
+	public $type;
+	public $thumb;
 
 	function __construct()
 	{
@@ -31,6 +33,15 @@ class Icons_model extends CI_Model {
 	{
 		$item = $this->db->where('id',$this->id)->get('icons')->result();
 		return (count($item) > 0) ? $item[0] : False;
+	}
+	
+	public function get_screenshots()
+	{
+		$this->db->where('id_program',$this->id)
+				 ->where('type','ss');
+		
+		$icons = $this->db->get('icons')->result();
+		return $icons;		
 	}
 	
 	public function get_list($limit = Null,$offset = Null)

@@ -206,6 +206,48 @@ class Programs extends CI_Controller {
 		
 	}
 	
+	public function screenshots($id_program,$screenshots_only = False)
+	{
+		$this->load->model('icons_model','Icons');
+		
+		if(False !== $id_program)
+			$this->Programs->id = $id_program;
+		
+		$this->Icons->type = 'ss';
+		$this->Icons->id   = $id_program;
+		
+		$program = (False !== $id_program) ? $this->Programs->get_id() : $this->Programs;
+		$screenshots = 	$this->Icons->get_screenshots();
+				
+		$data = array(
+			'program' => $program,	
+			'screenshots' => $screenshots,	
+			'ss_only' => 	$screenshots_only,
+		);
+		
+		if(False == $screenshots_only)
+			$this->load->view('header');
+		
+		$this->load->view('screenshots/view',$data);
+		
+		if(False == $screenshots_only)
+			$this->load->view('footer');		
+	}
+	
+	public function delete_screenshot($screenshot_id)
+	{
+		$this->load->model('icons_model','Icons');
+	
+		$this->Icons->id = $screenshot_id;
+		$screenshot = $this->Icons->get_id();
+		
+		$this->db->where('id',$screenshot_id);
+		$this->db->delete('icons'); 
+		
+		unlink("./uploads/{$screenshot->id_program}/{$screenshot->slug}{$screenshot->ext}");
+		unlink("./uploads/{$screenshot->id_program}/{$screenshot->thumb}");
+	}
+	
 	public function do_icon_upload()
 	{
 		$this->load->model('icons_model','Icons');
@@ -250,6 +292,8 @@ class Programs extends CI_Controller {
 			$this->Icons->width 		= $file_data['image_width'];
 			$this->Icons->height 		= $file_data['image_height'];
 			$this->Icons->size 			= $file_data['file_size'];
+			$this->Icons->type 			= 'icon';
+			$this->Icons->thumb 		= '';
 			$this->Icons->save();
 			
 			$new_name = $file_data['file_path'] . $this->input->post('slug') . $file_data['file_ext'];

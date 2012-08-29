@@ -29,6 +29,7 @@
 		<td>
 			<a href="<?php echo base_url('programs/add_edit/'.$program->id)?>"><i class="icon-pencil"></i>Edit</a>
 			<a href="<?php echo base_url('programs/upload_icon/'.$program->id)?>"><i class="icon-pencil"></i>Upload Icon</a>
+			<a href="<?php echo base_url('programs/screenshots/'.$program->id)?>"><i class="icon-picture"></i>Screenshots</a>
 		</td>
 	</tr>
 	<?php endforeach;?>

@@ -18,7 +18,11 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+if($_SERVER['HTTP_HOST'] == 'domainsv3.com') {
+	define('ENVIRONMENT', 'development');
+} else {
 	define('ENVIRONMENT', 'production');
+}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
