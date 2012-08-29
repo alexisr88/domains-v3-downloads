@@ -1,3 +1,4 @@
+<?php if(False === $ss_only) { ?>
 <script type="text/javascript">
 $(function() {
     $('#file_upload').uploadify({
@@ -37,6 +38,7 @@ $(document).ready(function(){
 	
 });
 </script>
+<?php } ?>
 
 <?php if(False === $ss_only) { ?>
 <ul class="breadcrumb">
