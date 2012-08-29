@@ -1,8 +1,8 @@
 <script type="text/javascript">
 $(function() {
     $('#file_upload').uploadify({
-        'swf'      : '/bootstrap/css/uploadify.swf',
-        'uploader' : '/uploadfy/do_upload/<?php echo $program->id; ?>',
+        'swf'      : '<?php echo base_url(); ?>/bootstrap/css/uploadify.swf',
+        'uploader' : '<?php echo base_url(); ?>/uploadfy/do_upload/<?php echo $program->id; ?>',
         'onQueueComplete' : function(file) {
         	$('#ss-container').empty();
             $('#ss-container').load('<?php echo base_url()."programs/screenshots/{$program->id}/true"; ?>',function(){
