@@ -8,9 +8,7 @@ class Api extends CI_Controller
 	}
 		
 	public function translate($text,$lang_code) 
-	{		
-		$this->db->cache_on();
-		
+	{						
 		$text = html_entity_decode(base64_decode(urldecode($text)));
 		$this->load->model('Translations_model','Translations');
 		
@@ -38,23 +36,16 @@ class Api extends CI_Controller
 			print $translation->text;
 		}
 			
-		$this->db->cache_off();
 	}
 	
 	public function get_language_info($lang_code)
 	{
-		$this->db->cache_on();
-		
 		$this->Langs->iso_code = $lang_code;
-		
-		$this->db->cache_off();
 		return $this->Langs->get_by_code();		
 	}
 	
 	public function get_tops($lang_code, $limit)
 	{		
-		$this->db->cache_on();
-		
 		$language = $this->get_language_info($lang_code);
 				
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags')
@@ -73,14 +64,12 @@ class Api extends CI_Controller
 						  ->limit($limit)
 						  ->get()->result();
 		
-		$this->db->cache_off();
+		
 		print json_encode($items);
 	}
 	
 	public function get_latest($lang_code, $limit)
 	{
-		$this->db->cache_on();
-		
 		$language = $this->get_language_info($lang_code);
 	
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
@@ -99,14 +88,11 @@ class Api extends CI_Controller
 							->limit($limit)
 							->get()->result();
 	
-		$this->db->cache_off();
 		print json_encode($items);
 	}
 	
 	public function get_soft($lang_code,$id_category,$limit)
 	{
-		$this->db->cache_on();
-		
 		$language = $this->get_language_info($lang_code);
 	
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
@@ -126,35 +112,25 @@ class Api extends CI_Controller
 							->limit($limit)
 							->get()->result();
 	
-		$this->db->cache_off();
 		print json_encode($items);		
 	}
 	
 	public function get_categories()
 	{
-		$this->db->cache_on();
-		
 		$this->load->model('Categories_model','Categories');
-		
-		$this->db->cache_off();
 		print json_encode($this->Categories->get_list());
 	}
 	
 	public function get_category_by_id($category_id)
 	{
-		$this->db->cache_on();
-		
 		$this->load->model('Categories_model','Categories');
 		$this->Categories->id = $category_id;
 		
-		$this->db->cache_off();
 		print json_encode($this->Categories->get_id());
 	}
 	
 	public function get_soft_splash_by_slug($lang_code,$slug)
 	{
-		$this->db->cache_on();
-		
 		$language = $this->get_language_info($lang_code);
 		
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
@@ -173,14 +149,11 @@ class Api extends CI_Controller
 							->where('i.type','icon')
 							->get()->result();
 		
-		$this->db->cache_off();
 		print json_encode($items);		
 	}
 	
 	public function get_search($lang_code, $query, $limit)
 	{
-		$this->db->cache_on();
-		
 		$language = $this->get_language_info($lang_code);
 	
 		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
@@ -200,14 +173,11 @@ class Api extends CI_Controller
 							->limit($limit)
 							->get()->result();
 	
-		$this->db->cache_off();
 		print json_encode($items);
 	}
 	
 	public function get_screenshots($id_program)
 	{
-		$this->db->cache_on();
-		
 		$screenshots = $this->db->where('type','ss')
 								->where('id_program',$id_program)
 								->get('icons')
@@ -219,7 +189,6 @@ class Api extends CI_Controller
 			$ss->ss_thumb = base_url('uploads') . '/' . $id_program . '/' . $ss->thumb;
 		}
 		
-		$this->db->cache_off();
 		print json_encode($screenshots);
 	}
 	
