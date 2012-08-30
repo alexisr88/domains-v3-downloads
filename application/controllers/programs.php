@@ -113,6 +113,11 @@ class Programs extends CI_Controller {
 		$form .= form_label('Url Background','url_background');
 		$form .= form_input('url_background',$program->url_background);
 		$form .= close_control();
+		
+		$form .= open_control();
+		$form .= form_label('Tags','tags');
+		$form .= form_textarea('tags',$program->tags);
+		$form .= close_control();
 
 		$form .= form_submit(array('class' => 'btn btn-primary btn-medium','value' => 'Save','id' => 'save-licenses'));
 		$form .= form_close();
@@ -133,6 +138,7 @@ class Programs extends CI_Controller {
 		$this->form_validation->set_rules('our_valuation', 'Our Valuation{our_valuation}', 'required');
 		$this->form_validation->set_rules('id_license', 'License{id_license}', 'required|is_natural_no_zero');
 		$this->form_validation->set_rules('id_category', 'Category{id_category}', 'required|is_natural_no_zero');
+		$this->form_validation->set_rules('tags', 'tags{tags}', 'required');
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -164,6 +170,7 @@ class Programs extends CI_Controller {
 			$this->Programs->color 				= $this->input->post('color');
 			$this->Programs->url_background 	= $this->input->post('url_background');
 			$this->Programs->tracker 			= $this->input->post('tracker');
+			$this->Programs->tags	 			= $this->input->post('tags');
 			
 			$this->Programs->save();
 		}

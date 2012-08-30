@@ -4,6 +4,7 @@ class Splash_content_model extends CI_Model {
 	public $id;
 	public $title;
 	public $text;
+	public $full_text;
 	public $id_language;
 	public $id_program;
 	public $date_added;

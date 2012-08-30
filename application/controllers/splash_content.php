@@ -61,6 +61,7 @@ class Splash_content extends CI_Controller {
 				
 			$this->Splash->title 		= $this->input->post('title');
 			$this->Splash->text 		= $this->input->post('text');
+			$this->Splash->full_text	= $this->input->post('full_text');
 			$this->Splash->id_language 	= $this->input->post('id_language');
 			$this->Splash->id_program	= $program->id;
 			
@@ -127,8 +128,13 @@ class Splash_content extends CI_Controller {
 		$form .= close_control();
 		
 		$form .= open_control();
-		$form .= form_label('Text','text');
+		$form .= form_label('Text (minimal for spash)','text');
 		$form .= form_textarea('text',$splash->text);
+		$form .= close_control();
+		
+		$form .= open_control();
+		$form .= form_label('Full Text','full_text');
+		$form .= form_textarea('full_text',$splash->full_text);
 		$form .= close_control();
 
 		$form .= '<hr />';
