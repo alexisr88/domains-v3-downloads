@@ -17,7 +17,7 @@
 	<?php foreach($programs as $program):?>
 	<tr>
 		<td><?php echo $program->id?></td>
-		<td><?php echo $program->name?> <a href="<?php echo $program->official_download; ?>">Download</a></td>
+		<td><?php echo $program->name?> <a href="<?php echo $program->official_download; ?>">Download (<?php echo $program->version?>)</a></td>
 		<td><?php echo ellipsize($program->official_site_url,32,.5);?></td>
 		<td>
 			<i class="<?php echo ($program->our_valuation >= 1) ? 'icon-star' : 'icon-star-empty'?>"></i>

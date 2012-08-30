@@ -59,6 +59,11 @@ class Programs extends CI_Controller {
 		$form .= close_control();
 		
 		$form .= open_control();
+		$form .= form_label('Version','version');
+		$form .= form_input('version',$program->version);
+		$form .= close_control();
+		
+		$form .= open_control();
 		$form .= form_label('Traker','tracker');
 		$form .= form_input('tracker',$program->tracker);
 		$form .= close_control();
@@ -132,6 +137,7 @@ class Programs extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '|');
 		$this->form_validation->set_rules('name', 'Name{name}', 'required');
 		$this->form_validation->set_rules('slug', 'Slug{slug}', 'required');
+		$this->form_validation->set_rules('version', 'Version{version}', 'required');
 		$this->form_validation->set_rules('official_site_url', 'Official site url{official_site_url}', 'required');
 		$this->form_validation->set_rules('official_download', 'Official Download{official_download}', 'required');
 		$this->form_validation->set_rules('size', 'Download Size{size}', 'required');
@@ -160,6 +166,7 @@ class Programs extends CI_Controller {
 				
 			$this->Programs->name 				= $this->input->post('name');
 			$this->Programs->slug 				= $this->input->post('slug');
+			$this->Programs->version 			= $this->input->post('version');
 			$this->Programs->official_site_url 	= $this->input->post('official_site_url');
 			$this->Programs->official_download 	= $this->input->post('official_download');
 			$this->Programs->official_contact 	= $this->input->post('official_contact');

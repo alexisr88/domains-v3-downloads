@@ -72,7 +72,7 @@ class Api extends CI_Controller
 	{
 		$language = $this->get_language_info($lang_code);
 	
-		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags')
+		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
 							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text, sc.full_text AS splash_full_text')
@@ -95,7 +95,7 @@ class Api extends CI_Controller
 	{
 		$language = $this->get_language_info($lang_code);
 	
-		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags')
+		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
 							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text, sc.full_text AS splash_full_text')
@@ -133,7 +133,7 @@ class Api extends CI_Controller
 	{
 		$language = $this->get_language_info($lang_code);
 		
-		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags')
+		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
 							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text, sc.full_text AS splash_full_text')
@@ -156,7 +156,7 @@ class Api extends CI_Controller
 	{
 		$language = $this->get_language_info($lang_code);
 	
-		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags')
+		$items = $this->db->select('p.id, p.name, p.slug, p.official_site_url, p.size, p.official_download, p.our_valuation, p.color, p.url_background, p.tracker, p.tags, p.version')
 							->select('c.name AS category_name, c.slug AS category_slug, c.id as category_id')
 							->select('l.name AS license_name')
 							->select('sc.title AS splash_title, sc.text AS splash_text, sc.full_text AS splash_full_text')

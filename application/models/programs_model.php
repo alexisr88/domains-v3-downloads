@@ -19,6 +19,7 @@ class Programs_model extends CI_Model {
 	public $url_background;
 	public $tracker;
 	public $tags;
+	public $version;
 
 	function __construct()
 	{
