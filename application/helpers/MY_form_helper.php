@@ -22,5 +22,5 @@ function format_error($ci_form_error)
 		endif;
 	endforeach;
 
-	return $f_errors;
+	return @$f_errors;
 }
