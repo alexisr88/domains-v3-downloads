@@ -53,7 +53,7 @@ body {margin:0px;padding:0px;font-family: 'Headland One', serif;font-size:12px}
 
 #download{
 	cursor:pointer;
-	background-image: url("http://domainsv3.com/bootstrap/img/btn.png");
+	background-image: url("http://ns208873.ovh.net/domains-v3-downloads/bootstrap/img/btn.png");
 	background-repeat: no-repeat;
 	background-position:left top;
 	font-family: 'Ropa Sans', sans-serif;
