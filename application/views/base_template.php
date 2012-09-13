@@ -3,6 +3,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 <link href='http://fonts.googleapis.com/css?family=Headland+One' rel='stylesheet' type='text/css'>
 
+<!-- Add jQuery library -->
+<script type="text/javascript" src="../../bootstrap/fancy/lib/jquery-1.8.0.min.js"></script>
+
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="../../bootstrap/fancy/source/jquery.fancybox.js?v=2.1.0"></script>
+<link rel="stylesheet" type="text/css" href="../../bootstrap/fancy/source/jquery.fancybox.css?v=2.1.0" media="screen" />
+
+<!-- Add Button helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="../../bootstrap/fancy/source/helpers/jquery.fancybox-buttons.css?v=1.0.3" />
+<script type="text/javascript" src="../../bootstrap/fancy/source/helpers/jquery.fancybox-buttons.js?v=1.0.3"></script>
+
+<!-- Add Thumbnail helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="../../bootstrap/fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" />
+<script type="text/javascript" src="../../bootstrap/fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
+	
+
 <style type="text/css">
 body {margin:0px;padding:0px;font-family: 'Headland One', serif;font-size:12px}
 .container {width:1080px;margin:0 auto;}
@@ -43,6 +59,7 @@ body {margin:0px;padding:0px;font-family: 'Headland One', serif;font-size:12px}
 .thumbs-stuff .stuff-title {font-size:16px;padding-bottom:10px;color:#<?php echo $data->color;?>}
 .thumbs-stuff .thumbs img {border-radius:10px;margin-right:10px;}
 .thumbs-stuff .thumbs {margin-left:20px;}
+.thumbs-stuff .thumbs a {text-decoration:none}
 
 .outer-content {width:98%;background:#eee;padding:10px;border-radius:10px;margin-top:15px;}
 .outer-content  {filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eee', endColorstr='#fff'); /* for IE */}
@@ -118,7 +135,9 @@ body {margin:0px;padding:0px;font-family: 'Headland One', serif;font-size:12px}
 			
 			<div class="thumbs">
 			<?php foreach($screenshots as $ss):?>
+			<a class="fancybox-thumb" rel="fancybox-thumb" href="<?php echo $ss->ss_url;?>" title="<?php echo $data->name . ' Screenshots'?>">
 				<img src="<?php echo $ss->ss_thumb;?>" />
+			</a>
 			<?php endforeach;?>
 			</div>
 			
@@ -136,6 +155,24 @@ body {margin:0px;padding:0px;font-family: 'Headland One', serif;font-size:12px}
 	
 	<div class="footer">
 	</div>
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".fancybox-thumb").fancybox({
+		prevEffect	: 'none',
+		nextEffect	: 'none',
+		helpers	: {
+			title	: {
+				type: 'outside'
+			},
+			thumbs	: {
+				width	: 50,
+				height	: 50
+			}
+		}
+	});
+});
+</script>
 	
 </div>
 </body>
