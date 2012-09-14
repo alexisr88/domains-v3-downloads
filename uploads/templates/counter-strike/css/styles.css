@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+*                                       { margin: 0; padding: 0; }
+body { background:url(../images/cs_bg.jpg) no-repeat center top;
+
+font-family:Arial, Helvetica, sans-serif; margin:0; font-size:13px; color:#666666;}
+
+ul                                      { margin: 0 0 25px 25px; }
+ 
+#dl                                     { position: absolute; top: 10px; right: 0; background: black; color: white; -moz-border-radius: 5px; -webkit-border-radius: 5px; padding: 3px 6px; }
+#dl:hover                               { background: #666; }
+a, a img                                { border: 0; text-decoration: none; outline: 0; }
+
+#content { width:1020px; height:1000px; margin: 0 auto;}
+
+#header{ width:980px; padding:0; position:relative; height:50px; }
+#header .logo { width:325px; height:91px; background:url(../images/cs_logo.png) no-repeat;  position:absolute; top:0; left:0}
+#header .slalon { width:337px; height:29px; font-size:16px; text-align:right}
+#banner { width:980px; height:390px; padding:10px 0 0 0; position: relative;}
+#banner .image { position:absolute; right:-65px; top:25px; width:100px; height:100px;}
+#banner .image2 { position:absolute; left:-115px; top:35px; width:100px; height:100px;}
+#banner .text { width:495px; position:absolute; top:175px; right:25px;}
+#banner h1 { color: #b9b594; font-size:28px;padding:10px 0;}
+#banner h2 { color: #b9b594; font-size:24px; font-weight:100; padding:10px 0;}
+#banner p { color: #b9b594; font-size:16px; font-weight:100; margin-bottom:10px; }
+#banner img { border:0; display:block;}
+
+#info { width:595px; height:220px; padding:0 10px 10px 10px; float:left; margin-bottom:20px;}
+#info p { font-size:13px; color: #999; margin:0 0 5px 0px; text-align:justify }
+#info h2 { color: #ada983; font-size:19px; padding-left:64px;  padding: 7px 0 10px 40px; margin-top:10px;}
+#info h2.one {background:url(../images/ico_24.png) no-repeat;}
+#info h2.two {background:url(../images/ico-2.png) no-repeat;}
+
+#screenShots { width:330px; height:220px; padding:0 10px 10px 10px; float: right;}
+#screenShots p { font-size:13px; color:#f5f5f5; margin-bottom:15px; }
+#screenShots h3 { color: #ada983; font-size:24px; font-weight:100; padding-left:64px; background:url(../images/iso.png) no-repeat; padding-bottom:25px; margin-bottom:10px}
+.tone { color:#f5f5f5}
+#screenShots img { float:left; margin-right:10px; }
+#screenShots .downText { font-size:15px; color:#F60;}
+
+#light { width:944px; height:20px; background:url(../images/light.png) no-repeat; clear:both; overflow:hidden; margin-top:10px;}
+#footer { width:944px; height:auto; background:url(../images/light.png) no-repeat; padding: 20px 0 0 0; clear:both; overflow:hidden;  }
+#footer p { font-size:11px; color: #666666; margin:2px; text-align:center;}
+#footer a { font-size:11px; color: #999; margin:2px; text-align:center; text-decoration:none}
+
+
+
+.signup-button{display:inline-block;padding:17px 30px 27px 7px; text-decoration:none;
+min-width:265px;
+color:#bed7e1;text-shadow:-1px -1px 0 rgba(0,0,0,0.25);font-size:14px;
+background: url(../images/download-back.png) no-repeat;
+-webkit-font-smoothing:antialiased; position:absolute; top:205px; left:80px}
+a.signup-button:hover{text-decoration:none; opacity: 0.85 }
+.signup-button strong{ color:#fff;font-size:22px;}
+.signup-button em{font-weight:bold;font-style:normal;color:#f4ffe1; padding-left:72px}
+.signup-button span { background: url(../images/arrow.gif) no-repeat; padding: 20px 0 33px 72px}

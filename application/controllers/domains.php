@@ -170,6 +170,26 @@ class Domains extends CI_Controller {
 		return $oscuridad;
 	}
 	
+	public function load_template()
+	{
+		$url = base_url().'uploads/templates/counter-strike/base/';
+		$this->load->library('simple_html_dom');
+		$html = file_get_html($url);
+		
+		
+		$content = $html->find('*[class=editable]');
+		
+		
+		foreach($content as $element) {
+		       $element->id = 'ec-'.uniqid();
+		}
+		
+		$html = str_replace('{base_url}',base_url(),$html);
+		echo $html;
+		
+		$this->load->view('toolkit');
+	}
+	
 	public function test($domain_id)
 	{
 		error_reporting(0);
