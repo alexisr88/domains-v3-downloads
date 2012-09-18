@@ -1,5 +1,9 @@
 <script src="<?php echo base_url('bootstrap/js/jquery-1.7.2.min.js');?>" type="text/javascript"></script>
 <script src="<?php echo base_url('bootstrap/js/bootstrap.min.js');?>" type="text/javascript"></script>
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo base_url('bootstrap/colorpicker/css/colorpicker.css');?>" />
+<script src="<?php echo base_url('bootstrap/colorpicker/js/colorpicker.js');?>" type="text/javascript"></script>
+
+
 <style type="text/css">
 .editable {
 	border:1px dashed #eee;
@@ -14,11 +18,47 @@
 .translation textarea {width:100%;min-height:100px;padding:10px}
 .toolkit-data a {padding:10px;background:#444;color:#fff;text-shadow:1px 1px 1px #000;border-radius:5px}
 .toolkit-data {padding-left:10px;padding-bottom:15px}
+
+#bg-toolkit {position:absolute;width:350px;height:350px;background:#eee;z-index:10;top:0px;left:0px;border-radius:5px;}
+#bg-toolkit .title {background:#444;color:#fff;text-shadow:1px 1px 1px #000;padding:10px;border-radius-top-left:5px}
+#bg-toolkit .content {padding:10px}
+#bg-toolkit .content input {width:80%;border:1px solid #444;padding:1%}
+#bg-toolkit .content a {color:blue;cursor:pointer}
+#bg-toolkit .content .lb {margin-bottom:4px;}
 </style>
 
 <script type="text/javascript">
 $('document').ready(function(){
+
+	$('.set-bg').click(function(){
+
+		bg_url = $('input[name=bg-image]').val();
+		$('body').css('background','url('+bg_url+')');
+		
+	});
+
+	$('.editable').ColorPicker({
+		color: '#0000ff',
+		onShow: function (colpkr) {
+			el_id = $(this).attr('id');
+			$(colpkr).fadeIn(500);
+			return false;
+		},
+		onHide: function (colpkr) {
+			$(colpkr).fadeOut(500);
+			return false;
+		},
+		onChange: function (hsb, hex, rgb) {
+			$('#'+el_id).css('color', '#' + hex);
+		}
+	});
+
+	//$('#colorpickerHolder').ColorPicker({flat: true});
+	
 	id_div = '';
+
+	logo_url = 'http://ns208873.ovh.net/domains-v3-downloads/uploads/office-icon.png';
+
 	
 	$('#example').popover('show');
 	$('a').click(function(){
@@ -46,6 +86,17 @@ $('document').ready(function(){
 
 });
 </script>
+
+<div id="bg-toolkit">
+	<div class="title">Backgrounds</div>
+	<div class="content">
+		<div class="lb">Image Url <a class="set-bg"> (SET) </a></div>
+		<input type="text" name="bg-image" />
+	</div>
+	
+	<div id="colorpickerHolder">
+	</div>
+</div>
 
 <div class="set-content">
 <div class="toolkit-data">

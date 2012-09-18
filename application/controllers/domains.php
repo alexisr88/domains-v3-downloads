@@ -170,24 +170,39 @@ class Domains extends CI_Controller {
 		return $oscuridad;
 	}
 	
-	public function load_template()
+	public function load_template($temp_folder_name)
 	{
-		$url = base_url().'uploads/templates/counter-strike/base/';
+		$url = base_url().'uploads/templates/'.$temp_folder_name.'/';
 		$this->load->library('simple_html_dom');
 		$html = file_get_html($url);
 		
-		
 		$content = $html->find('*[class=editable]');
-		
-		
+
 		foreach($content as $element) {
 		       $element->id = 'ec-'.uniqid();
 		}
 		
-		$html = str_replace('{base_url}',base_url(),$html);
+		$html = str_replace('{base_url}',$url,$html);
 		echo $html;
 		
 		$this->load->view('toolkit');
+	}
+	
+	public function template_list()
+	{
+		$template_dir = './uploads/templates/';
+		$this->load->helper('file');
+		
+		$files = scandir($template_dir);
+		
+		$data = array(
+			'templates' => 	$files,	
+		);
+		
+		$this->load->view('header');
+		$this->load->view('domains/template_lis',$data);
+		$this->load->view('footer');
+		
 	}
 	
 	public function test($domain_id)
