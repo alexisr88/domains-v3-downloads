@@ -6,6 +6,7 @@ class Domains_model extends CI_Model {
 	public $password;
 	public $id_program;
 	public $id_language;
+	public $sem;
 
 	function __construct()
 	{
@@ -22,6 +23,12 @@ class Domains_model extends CI_Model {
 		{
 			$this->db->insert('domains',$this);
 		}
+	}
+	
+	public function get_sem_domains()
+	{
+		$items = $this->db->where('sem',True)->get('domains')->result();
+		return $items;	
 	}
 		
 	public function get_id()

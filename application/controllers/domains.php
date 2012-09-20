@@ -13,6 +13,19 @@ class Domains extends CI_Controller {
 		$this->load->model('programs_model','Programs');
 	}
 	
+	public function sem()
+	{
+		$this->load->helper('text');
+		
+		$data = array(
+			'domains' => $this->Domains->get_sem_domains(),
+		);
+		
+		$this->load->view('header');
+		$this->load->view('domains/sem_view',$data);
+		$this->load->view('footer');		
+	}
+	
 	public function view()
 	{
 		$this->load->helper('text');
@@ -23,6 +36,24 @@ class Domains extends CI_Controller {
 		
 		$this->load->view('header');
 		$this->load->view('domains/view',$data);
+		$this->load->view('footer');		
+	}
+	
+	public function upload_template($id_domain)
+	{
+		if(False !== $id_domain)
+			$this->Domains->id = $id_domain;
+		
+		$domains = (False !== $id_domain) ? $this->Domains->get_id() : $this->Domains;
+		
+		$data = array(
+			'form' => $this->_render_form($id_domain),
+			'domain' => $domains,
+			'programs_th' => htmlentities('["'.implode('","',$this->Programs->get_names_for_typehead()).'"]'),
+		);
+		
+		$this->load->view('header');
+		$this->load->view('domains/upload_template',$data);
 		$this->load->view('footer');		
 	}
 	
@@ -66,6 +97,11 @@ class Domains extends CI_Controller {
 		$form .= open_control();
 		$form .= form_label('Program Name','program_name');
 		$form .= form_input($p_name_input);
+		$form .= close_control();
+		
+		$form .= open_control();
+		$form .= form_label('Sem domain?','sem');
+		$form .= form_checkbox('sem','',$domain->sem);
 		$form .= close_control();
 		
 		$form .= open_control();
@@ -113,6 +149,10 @@ class Domains extends CI_Controller {
 			$this->Domains->password = $this->input->post('password');
 			$this->Domains->id_program	= $program->id;
 			$this->Domains->id_language	= $this->input->post('id_language');
+			
+			if($this->input->post('sem') !== False)
+				$this->Domains->sem	= True;
+			
 			$this->Domains->save();
 		}
 		
@@ -172,20 +212,62 @@ class Domains extends CI_Controller {
 	
 	public function load_template($temp_folder_name)
 	{
-		$url = base_url().'uploads/templates/'.$temp_folder_name.'/';
+		error_reporting(0);
+		$this->load->helper('file');
 		$this->load->library('simple_html_dom');
-		$html = file_get_html($url);
 		
-		$content = $html->find('*[class=editable]');
-
-		foreach($content as $element) {
-		       $element->id = 'ec-'.uniqid();
+		$base_theme	= base_url().'uploads/templates/'.$temp_folder_name.'/';
+		$base_file	= './uploads/templates/'.$temp_folder_name.'/base_template.php';		
+		$has_base	= get_file_info($base_file);
+		
+		if(False === $has_base) 
+		{
+			$original_template = file_get_contents($base_theme);
+			write_file($base_file, $original_template);
+		}
+				
+		$url 	= base_url().'uploads/templates/'.$temp_folder_name.'/base_template.php';
+		$html 	= file_get_html($url);
+		
+		if(False === $has_base)
+		{		
+			$content = $html->find('*[class=editable]');
+			
+			foreach($content as $element) {
+				$element->id = 'ec-'.uniqid();
+			}	
+			
+			$html = str_replace('{base_url}',$base_theme,$html);
+			
+			write_file($base_file, $html);
 		}
 		
-		$html = str_replace('{base_url}',$url,$html);
-		echo $html;
+		$data = array(
+			'html_template' => $html,
+			'url_save_content' => base_url('domains/save_template_contents/'.$temp_folder_name),	
+		);
 		
-		$this->load->view('toolkit');
+		$this->load->view('toolkit',$data);
+	}
+	
+	public function save_template_contents($temp_folder_name)
+	{
+		$this->load->library('simple_html_dom');
+		$this->load->helper('file');
+		
+		$base_theme	= base_url().'uploads/templates/'.$temp_folder_name.'/base_template.php';
+		
+		$html 	= file_get_html($base_theme);
+		
+		foreach($this->input->post('items') as $post_content)
+		{
+			$content = $html->find('*[id='.$post_content['id'].']');
+			foreach($content as $m_content) {
+				$m_content->innertext = $post_content['text'];
+			}
+		}
+				
+		write_file('uploads/templates/'.$temp_folder_name.'/es.php', $html);
 	}
 	
 	public function template_list()

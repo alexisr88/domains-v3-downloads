@@ -6,6 +6,58 @@ class Uploadfy extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('form');
+		$this->load->helper('slugify');
+		$this->load->model('templates_model','Templates');
+		$this->load->model('programs_model','Programs');	
+	}
+	
+	public function do_template_upload($id_domain,$folder_name,$program_name)
+	{
+		$this->load->model('domains_model','Domains');
+		$folder_name = slugify(urldecode($folder_name));
+		
+		if(False !== $id_domain)
+			$this->Domains->id = $id_domain;
+	
+		$domains = (False !== $id_domain) ? $this->Domains->get_id() : $this->Domains;
+			
+		$config['upload_path'] 		= "./uploads/templates/{$domains->id}/{$folder_name}";
+		$config['allowed_types'] 	= '*';
+		$config['max_size']			= '60000';
+		
+		if(False === is_dir($config['upload_path']))
+		{
+			mkdir($config['upload_path'], 0777, True);
+			chmod($config['upload_path'], 0777);
+		}
+	
+		$this->load->library('upload', $config);
+	
+		if (!$this->upload->do_upload())
+		{
+			$data['status'] = 'fail';
+			$data['errors'] = $this->upload->display_errors();
+			
+			var_dump($this->upload->display_errors());
+		}
+		else
+		{
+			$file_data = $this->upload->data();	
+					
+			$template_name = "$id_domain-$folder_name-".uniqid();
+			
+			$program = $this->Programs->get_by_name(urldecode($program_name));
+			
+			$this->Templates->id_domain  = $id_domain;
+			$this->Templates->id_program = $program->id;
+			$this->Templates->path = $config['upload_path'];
+			$this->Templates->name = $template_name;
+			
+			$this->Templates->save();
+			echo "1";
+		}
+	
+	
 	}
 		
 	public function do_upload($id_program)

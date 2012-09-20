@@ -47,8 +47,12 @@
       <div class="row-fluid">
       
         <div class="span2">
-          <div class=" sidebar-nav">
+          <div class=" sidebar-nav well">
             <ul class="nav nav-list">
+              <li class="nav-header">Domains</li>
+              <li><a href="<?php echo base_url('domains/add_edit');?>"><i class="icon-plus"></i>New</a></li>
+              <li><a href="<?php echo base_url('domains/view');?>"><i class="icon-th-list"></i>Full View</a></li>
+              <li><a href="<?php echo base_url('domains/sem');?>"><i class="icon-th-list"></i>Sem View</a></li>
               <li class="nav-header">Translations</li>
               <li><a href="<?php echo base_url('translations/create_edit');?>"><i class="icon-plus"></i>New Key</a></li>
               <li><a href="<?php echo base_url('translations/step_one');?>"><i class="icon-th-list"></i>Translate Content</a></li>
