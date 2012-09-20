@@ -43,7 +43,7 @@
 	<a class="do-set btn-pp">Save Content</a>
 </div>
 
-<a class="save-all">Fucking Save!</a>
+<a class="save-all">Confirmar Landing</a>
 <div style="display:none" id="final-save"></div>
 
 <script type="text/javascript">

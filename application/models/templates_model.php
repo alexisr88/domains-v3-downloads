@@ -29,6 +29,18 @@ class Templates_model extends CI_Model {
 		return (count($items) > 0) ? True : False;
 	}
 	
+	public function get_templates_join_all()
+	{
+		$templates = $this->db->select('t.id, t.name as template_name, t.path, p.name as program_name, d.host')
+							  ->from('templates t')
+							  ->join('programs p','t.id_program = p.id')
+							  ->join('domains d','t.id_domain = d.id')
+							  ->get()
+							  ->result();
+		
+		return $templates;
+	}
+	
 	public function get_for_select()
 	{
 		$categories = array('-1' => 'Select one ...');
@@ -45,7 +57,7 @@ class Templates_model extends CI_Model {
 	public function get_id()
 	{
 		$item = $this->db->where('id',$this->id)->get('templates')->result();
-		return (count($item) > 0) ? True : False;
+		return (count($item) > 0) ? $item[0] : False;
 	}
 	
 	public function get_list($limit = Null,$offset = Null)

@@ -11,6 +11,37 @@ class Domains extends CI_Controller {
 		$this->load->model('domains_model','Domains');
 		$this->load->model('languages_model','Languages');
 		$this->load->model('programs_model','Programs');
+		$this->load->model('templates_model','Templates');
+	}
+	
+	public function generate_landing($id_template)
+	{
+		error_reporting(0);
+		
+		$this->load->library('simple_html_dom');
+		$this->load->helper('file');
+		
+		$this->Templates->id = $id_template;
+		
+		$template_info  = $this->Templates->get_id();		
+		$template_index = $template_info->path;
+		$template_url   = str_replace('./uploads',base_url().'/uploads',$template_index);
+				
+		$base_html  = file_get_html($template_url);
+		
+		$content = $base_html->find('*[class=editable]');
+			
+		foreach($content as $element) {
+			$element->id = 'ec-'.uniqid();
+		}
+			
+		$html = str_replace('{base_url}',base_url().$template_info->path,$base_html);	
+		write_file($template_info->path.'/base.php', $html);
+		
+		echo $html;
+		
+		$this->load->view('toolkit.php');
+		
 	}
 	
 	public function sem()
@@ -271,18 +302,13 @@ class Domains extends CI_Controller {
 	}
 	
 	public function template_list()
-	{
-		$template_dir = './uploads/templates/';
-		$this->load->helper('file');
-		
-		$files = scandir($template_dir);
-		
+	{				
 		$data = array(
-			'templates' => 	$files,	
+			'templates' => 	$this->Templates->get_templates_join_all(),	
 		);
 		
 		$this->load->view('header');
-		$this->load->view('domains/template_lis',$data);
+		$this->load->view('domains/template_list',$data);
 		$this->load->view('footer');
 		
 	}

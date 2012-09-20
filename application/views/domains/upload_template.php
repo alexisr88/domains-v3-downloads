@@ -40,7 +40,6 @@ $(function() {
 <ul class="breadcrumb">
   <li><a href="<?php echo base_url('domains/sem');?>">Domains</a> <span class="divider">/</span> </li>
 </ul>
-
  
 <div class="alert alert-error" style="display:none">Debe especificar una carpeta de destino y programa</div>
 

@@ -14,14 +14,33 @@ class Uploadfy extends CI_Controller {
 	public function do_template_upload($id_domain,$folder_name,$program_name)
 	{
 		$this->load->model('domains_model','Domains');
-		$folder_name = slugify(urldecode($folder_name));
 		
 		if(False !== $id_domain)
 			$this->Domains->id = $id_domain;
-	
+		
 		$domains = (False !== $id_domain) ? $this->Domains->get_id() : $this->Domains;
-			
-		$config['upload_path'] 		= "./uploads/templates/{$domains->id}/{$folder_name}";
+		
+		$folder_name = slugify(urldecode($folder_name));
+		$base_upload = "./uploads/templates/{$domains->id}/{$folder_name}/";
+		
+		$extension = explode('.',$_FILES['userfile']['name']);
+		$extension = $extension[count($extension)-1];
+		
+		$folder['images'] 	= array('gif','jpg','jpeg','png','swf');
+		$folder['js'] 		= array('js');
+		$folder['css'] 		= array('css');
+		$folder['index'] 		= array('php','icon');
+		
+		foreach($folder as $type => $mimes):
+			if(in_array($extension,$mimes)) { 
+				if($type != 'index')
+					$upload_path = "./uploads/templates/{$domains->id}/{$folder_name}/$type";
+				if($type == 'index')
+					$upload_path = "./uploads/templates/{$domains->id}/{$folder_name}/";
+		}
+		endforeach;		
+					
+		$config['upload_path'] 		= $upload_path;
 		$config['allowed_types'] 	= '*';
 		$config['max_size']			= '60000';
 		
@@ -50,7 +69,7 @@ class Uploadfy extends CI_Controller {
 			
 			$this->Templates->id_domain  = $id_domain;
 			$this->Templates->id_program = $program->id;
-			$this->Templates->path = $config['upload_path'];
+			$this->Templates->path = $base_upload;
 			$this->Templates->name = $template_name;
 			
 			$this->Templates->save();
